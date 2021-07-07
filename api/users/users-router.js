@@ -28,8 +28,6 @@ router.post("/", validateUser, (req, res, next) => {
       res.status(201).json(name);
     })
     .catch(next);
-  // RETURN THE NEWLY CREATED USER OBJECT
-  // this needs a middleware to check that the request body is valid
 });
 
 router.put("/:id", (req, res) => {

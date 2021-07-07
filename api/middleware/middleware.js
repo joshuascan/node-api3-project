@@ -28,26 +28,25 @@ const validateUserId = async (req, res, next) => {
   }
 };
 
-const validateUser = async (req, res, next) => {
-  try {
-    const { name } = req.body;
-    if (name) {
-      next();
-    } else {
-      next({
-        status: 400,
-        message: "missing required name field",
-      });
-    }
-  } catch (err) {
-    next(err);
+const validateUser = (req, res, next) => {
+  if (req.body.name) {
+    next();
+  } else {
+    next({
+      status: 400,
+      message: "missing required name field",
+    });
   }
 };
 
-const validatePost = async (req, res, next) => {
-  try {
-  } catch (err) {
-    next(err);
+const validatePost = (req, res, next) => {
+  if (req.body.post) {
+    next();
+  } else {
+    next({
+      status: 400,
+      message: "missing required text field",
+    });
   }
 };
 
