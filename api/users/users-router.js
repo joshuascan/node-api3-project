@@ -38,10 +38,15 @@ router.put("/:id", [validateUserId, validateUser], (req, res, next) => {
     .catch(next);
 });
 
-router.delete("/:id", (req, res) => {
-  // RETURN THE FRESHLY DELETED USER OBJECT
-  // this needs a middleware to verify user id
-  res.status(200).json({ message: "DELETE successful" });
+router.delete("/:id", validateUserId, async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const user = await Users.getById(id);
+    await Users.remove(id);
+    res.status(200).json(user);
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.get("/:id/posts", (req, res) => {
