@@ -30,6 +30,15 @@ const validateUserId = async (req, res, next) => {
 
 const validateUser = async (req, res, next) => {
   try {
+    const { name } = req.body;
+    if (name) {
+      next();
+    } else {
+      next({
+        status: 400,
+        message: "missing required name field",
+      });
+    }
   } catch (err) {
     next(err);
   }
