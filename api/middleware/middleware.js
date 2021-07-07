@@ -42,9 +42,17 @@ const validatePost = async (req, res, next) => {
   }
 };
 
+const errorHandling = (err, req, res, next) => {
+  const status = err.status || 500;
+  res.status(status).json({
+    message: err.message,
+  });
+};
+
 module.exports = {
   logger,
   validateUserId,
   validateUser,
   validatePost,
+  errorHandling,
 };
