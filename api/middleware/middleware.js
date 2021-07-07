@@ -5,7 +5,7 @@ function logger(req, res, next) {
   console.log(
     `Method: ${req.method}\nURL: http://localhost:4000${
       req.url
-    }\nTimestamp: ${Date.now()}\n`
+    }\nTimestamp: ${new Date().toLocaleString()}\n`
   );
   next();
 }
@@ -40,7 +40,7 @@ const validateUser = (req, res, next) => {
 };
 
 const validatePost = (req, res, next) => {
-  if (req.body.post) {
+  if (req.body.text) {
     next();
   } else {
     next({
