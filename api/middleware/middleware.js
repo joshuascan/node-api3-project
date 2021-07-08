@@ -3,7 +3,7 @@ const Posts = require("../posts/posts-model");
 
 function logger(req, res, next) {
   console.log(
-    `Method: ${req.method}\nURL: http://localhost:4000${
+    `Method: ${req.method}\nURL: ${
       req.url
     }\nTimestamp: ${new Date().toLocaleString()}\n`
   );
