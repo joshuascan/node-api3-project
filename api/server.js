@@ -1,3 +1,5 @@
+require("dotenv").config();
+const path = require("path");
 const express = require("express");
 const usersRouter = require("./users/users-router");
 const { logger, errorHandling } = require("./middleware/middleware");
@@ -5,6 +7,11 @@ const { logger, errorHandling } = require("./middleware/middleware");
 const server = express();
 
 server.use(express.json());
+
+if (process.env.NODE_ENV === "development") {
+  const cors = require("cors");
+  server.use(cors());
+}
 
 server.use(logger);
 
